@@ -1,3 +1,7 @@
-exports.sankeyJourneys = function(req, res){
-  res.render('sankeyJourneys', { title: 'Sankey Journeys' });
+exports.sankey = function(req, res){
+  res.render('sankey', { title: 'Sankey' });
+};
+
+exports.force = function(req, res){
+  res.render('force', { title: 'Force' });
 };

@@ -48,7 +48,6 @@ define(function() {
 
         // pull out the referrer (source), and the current url (target)
         var source = this._findIndex(this._extractDomain(request._source.referringHost || 'none'));
-        // var source = this._findIndex(request._source.referringHost || 'none'));
         // var target = this._findIndex(request._source.path);
         var target = this._findIndex(/\/([^/]*)/.exec(request._source.path)[1] || '/');
 

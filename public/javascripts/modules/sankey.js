@@ -1,42 +1,10 @@
-require(['reqwest',  'modules/sankey-nodes', 'js!d3!order', 'js!sankey!order'], function(reqwest, SankeyNodes) {
+define(['js!d3!order', 'js!sankey!order'], function() {
 
-  var currentTime = new Date().getTime();
+  var Sankey = function(graph) {
 
-  var esQuery = {
-    "query": {
-      "bool": {
-        "must": [
-          {
-            "term": {
-              "host": "m.guardian.co.uk"
-            }
-          }
-        ]
-      },
-      "from": 0,
-      "size": 500
-    }
-  }
+    this.graph = graph,
 
-  var referringHost = /referring-host=([^&]+)/.exec(window.location.search);
-  if (referringHost) {
-    esQuery.query.bool.must.push({"wildcard": {"referringHost": referringHost[1]}});
-  }
-  var size = /size=([\d]+)/.exec(window.location.search);
-  if (size) {
-    esQuery.query.size = size[1];
-  }
-
-  // make request to ophan
-  reqwest({
-    url: 'http://elasticsearch.ophan.co.uk:9200/_search',
-    type: 'json',
-    method: 'post',
-    data: JSON.stringify(esQuery)
-  })
-    .then(function(resp) {
-
-      var journeys = new SankeyNodes(resp.hits.hits).get();
+    this.render = function() {
 
       // NOTE: following lifted from http://bost.ocks.org/mike/sankey/
       var margin = {top: 1, right: 1, bottom: 6, left: 1},
@@ -59,12 +27,12 @@ require(['reqwest',  'modules/sankey-nodes', 'js!d3!order', 'js!sankey!order'], 
         .size([width, height]);
 
       var path = sankey.link();
-      sankey.nodes(journeys.nodes)
-        .links(journeys.links)
+      sankey.nodes(graph.nodes)
+        .links(graph.links)
         .layout(32);
 
       var link = svg.append("g").selectAll(".link")
-        .data(journeys.links)
+        .data(graph.links)
         .enter().append("path")
         .attr("class", "link")
         .attr("d", path)
@@ -75,7 +43,7 @@ require(['reqwest',  'modules/sankey-nodes', 'js!d3!order', 'js!sankey!order'], 
           .text(function(d) { return d.source.name + " → " + d.target.name + "\n" + format(d.value); });
 
       var node = svg.append("g").selectAll(".node")
-        .data(journeys.nodes)
+        .data(graph.nodes)
         .enter().append("g")
         .attr("class", "node")
         .attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
@@ -109,8 +77,9 @@ require(['reqwest',  'modules/sankey-nodes', 'js!d3!order', 'js!sankey!order'], 
         link.attr("d", path);
       }
 
-    })
-    .fail(function(err, msg) {
-      console.log([err, msg].join(' : '));
-    })
+    }
+  }
+
+  return Sankey;
+
 })

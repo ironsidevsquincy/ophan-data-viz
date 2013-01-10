@@ -2,6 +2,7 @@ extends layout
 
 block content
   h1= title
+  p= 'Force graph of single journeys around the site'
   form(method='get')
     label= 'Referring host'
       select(name='referring-host')
@@ -18,30 +19,14 @@ block content
         option(value='500', selected='selected')= '500'
         option(value='1000')= '1000'
     input(type='submit', value='Filter')
-  p#chart
   style
-    #chart {
-      height: 500px;
-    }
-
-    .node rect {
-      cursor: move;
-      fill-opacity: .9;
-      shape-rendering: crispEdges;
-    }
-
-    .node text {
-      pointer-events: none;
-      text-shadow: 0 1px 0 #fff;
+    .node {
+      stroke: #fff;
+      stroke-width: 1.5px;
     }
 
     .link {
-      fill: none;
-      stroke: #000;
-      stroke-opacity: .2;
+      stroke: #999;
+      stroke-opacity: .6;
     }
-
-    .link:hover {
-      stroke-opacity: .5;
-    }
-  script(type='text/javascript', src='/javascripts/journeys.js')
+  script(type='text/javascript', src='/javascripts/bootstraps/force.js')

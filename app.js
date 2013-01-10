@@ -28,7 +28,8 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/sankey-journeys', graph.sankeyJourneys);
+app.get('/sankey', graph.sankey);
+app.get('/force', graph.force);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

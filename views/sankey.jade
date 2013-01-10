@@ -1,0 +1,48 @@
+extends layout
+
+block content
+  h1= title
+  p= 'Sankey graph of single journeys around the site'
+  form(method='get')
+    label= 'Referring host'
+      select(name='referring-host')
+        option(value='')= ''
+        option(value='*google*')= 'google'
+        option(value='*yahoo*')= 'yahoo'
+        option(value='*bing*')= 'bing'
+        option(value='*guardian*')= 'guardian'
+    label= 'Size'
+      select(name='size')
+        option(value='50')= '50'
+        option(value='100')= '100'
+        option(value='200')= '200'
+        option(value='500', selected='selected')= '500'
+        option(value='1000')= '1000'
+    input(type='submit', value='Filter')
+  p#chart
+  style
+    #chart {
+      height: 500px;
+    }
+
+    .node rect {
+      cursor: move;
+      fill-opacity: .9;
+      shape-rendering: crispEdges;
+    }
+
+    .node text {
+      pointer-events: none;
+      text-shadow: 0 1px 0 #fff;
+    }
+
+    .link {
+      fill: none;
+      stroke: #000;
+      stroke-opacity: .2;
+    }
+
+    .link:hover {
+      stroke-opacity: .5;
+    }
+  script(type='text/javascript', src='/javascripts/bootstraps/sankey.js')
