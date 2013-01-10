@@ -32,7 +32,7 @@ define(function() {
     }
 
     this._extractDomain = function(host) {
-      ['google', 'bbc', 'guardian', 'facebook', 'yahoo', 'ask', 'o2', 'outbrain', 'bing', 'linkedin', 
+      ['google', 'bbc', 'm.guardian', 'www.guardian', 'facebook', 'yahoo', 'ask', 'o2', 'outbrain', 'bing', 'linkedin', 
       'reddit', 'stumbleupon', 'readability', 'wikipedia', 'telegraph'].some(function(knownHost) {
         if (host.indexOf(knownHost) !== -1) {
           host = knownHost;
@@ -48,6 +48,7 @@ define(function() {
 
         // pull out the referrer (source), and the current url (target)
         var source = this._findIndex(this._extractDomain(request._source.referringHost || 'none'));
+        // var source = this._findIndex(request._source.referringHost || 'none'));
         // var target = this._findIndex(request._source.path);
         var target = this._findIndex(/\/([^/]*)/.exec(request._source.path)[1] || '/');
 

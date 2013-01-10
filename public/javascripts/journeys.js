@@ -6,14 +6,6 @@ require(['reqwest',  'modules/sankey-nodes', 'js!d3!order', 'js!sankey!order'], 
     "query": {
       "bool": {
         "must": [
-          // {
-          //   "range": {
-          //     "dt": {
-          //       "from": currentTime - 300000,
-          //       "to":  currentTime 
-          //     }
-          //   }
-          // },
           {
             "term": {
               "host": "m.guardian.co.uk"
@@ -26,9 +18,13 @@ require(['reqwest',  'modules/sankey-nodes', 'js!d3!order', 'js!sankey!order'], 
     }
   }
 
-  var referringHost = /referring-host=([^&]*)/.exec(window.location.search);
-  if (referringHost && referringHost[1] !== '') {
+  var referringHost = /referring-host=([^&]+)/.exec(window.location.search);
+  if (referringHost) {
     esQuery.query.bool.must.push({"wildcard": {"referringHost": referringHost[1]}});
+  }
+  var size = /size=([\d]+)/.exec(window.location.search);
+  if (size) {
+    esQuery.query.size = size[1];
   }
 
   // make request to ophan
@@ -42,7 +38,7 @@ require(['reqwest',  'modules/sankey-nodes', 'js!d3!order', 'js!sankey!order'], 
 
       var journeys = new SankeyNodes(resp.hits.hits).get();
 
-      // following lifted from http://bost.ocks.org/mike/sankey/
+      // NOTE: following lifted from http://bost.ocks.org/mike/sankey/
       var margin = {top: 1, right: 1, bottom: 6, left: 1},
         width = window.innerWidth - margin.left - margin.right - 100,
         height = window.innerHeight - margin.top - margin.bottom - 200;
