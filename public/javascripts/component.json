@@ -1,0 +1,10 @@
+{
+  "name": "app",
+  "version": "0.1.0 ",
+  "dependencies": {
+    "curl": "0.7",
+    "reqwest": "0.6",
+    "d3": "3",
+    "d3-plugins": "*"
+  }
+}

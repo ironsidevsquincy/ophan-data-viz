@@ -1,0 +1,40 @@
+extends layout
+
+block content
+  h1= title
+  form
+    label= 'Referring host'
+      select(name='referring-host')
+        option(value='')= ''
+        option(value='*google*')= 'google'
+        option(value='*yahoo*')= 'yahoo'
+        option(value='*bing*')= 'bing'
+        option(value='*guardian*')= 'guardian'
+    input(type='submit', value='Filter')
+  p#chart
+  style
+    #chart {
+      height: 500px;
+    }
+
+    .node rect {
+      cursor: move;
+      fill-opacity: .9;
+      shape-rendering: crispEdges;
+    }
+
+    .node text {
+      pointer-events: none;
+      text-shadow: 0 1px 0 #fff;
+    }
+
+    .link {
+      fill: none;
+      stroke: #000;
+      stroke-opacity: .2;
+    }
+
+    .link:hover {
+      stroke-opacity: .5;
+    }
+  script(type='text/javascript', src='/javascripts/journeys.js')

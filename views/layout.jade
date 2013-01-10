@@ -1,0 +1,20 @@
+doctype 5
+html
+  head
+    title= title
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    script(type='text/javascript')
+      curl = {
+        baseUrl: "/javascripts",
+        apiName: "require",
+        paths:
+          {
+            reqwest: "components/reqwest/reqwest.js",
+            d3: "components/d3/d3.js",
+            sankey: "components/d3-plugins/sankey/sankey.js"
+          }
+        }
+    script(type='text/javascript', src='/javascripts/components/curl/dist/curl-kitchen-sink/curl.js')
+  body
+    a(href='/')= 'Home'
+    block content
