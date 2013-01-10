@@ -3,14 +3,27 @@ define(function() {
   /**
    * Convert response into format for sankey - http://bost.ocks.org/mike/sankey/energy.json
    */
-  var SankeyNodes = function(requests) {
+  var SankeyNodes = function(requests, opts) {
 
-    this.requests = requests,
+    // constructor
+    (function (){
+      // default opts
+      var defaultOpts = {
+        showSourcePath: false,
+        showTargetSection: false
+      };
+      for (var key in opts) defaultOpts[key] = opts[key]
+      this.opts = defaultOpts;
+    }).call(this)
+
+    this.requests = requests;
 
     this.sankeyData = {
       nodes: [],
       links: []
-    },
+    };
+
+    this.sections = [];
 
     /**
      * check if they're already accounted for, otherwise add
@@ -26,7 +39,21 @@ define(function() {
         }
       });
       if (nodeIndex === null) {
-        nodeIndex = (this.sankeyData.nodes.push({name: nodeName}) - 1)
+        // search for the section
+        var group = null;
+        var nodeSection = /^\/([^/]*)/.exec(nodeName);
+        if (nodeSection && nodeSection[0]) {
+          this.sections.some(function(section, i) {
+            if (section === nodeSection[0]) {
+              group = i;
+              return true;
+            }
+          }, this);
+          if(group === null) {
+            group = (this.sections.push(nodeSection[0]) - 1)
+          }  
+        }
+        nodeIndex = (this.sankeyData.nodes.push({name: nodeName, group: group}) - 1)
       }
       return nodeIndex;
     }
@@ -46,10 +73,16 @@ define(function() {
       // iterate through each request
       requests.forEach(function(request, index) {
 
+        // use 
+        var sourceName = (this.opts.showSourcePath) 
+          ? /^.*:\/\/[^/]+(.*)$/.exec(request._source.documentReferrer)[1]
+          : this._extractDomain(request._source.referringHost || 'none');
         // pull out the referrer (source), and the current url (target)
-        var source = this._findIndex(this._extractDomain(request._source.referringHost || 'none'));
-        // var target = this._findIndex(request._source.path);
-        var target = this._findIndex(/\/([^/]*)/.exec(request._source.path)[1] || '/');
+        var source = this._findIndex(sourceName);
+        var targetName = (this.opts.showTargetSection) 
+          ? /\/([^/]*)/.exec(request._source.path)[1] || '/'
+          : request._source.path;
+        var target = this._findIndex(targetName);
 
         // have we already counted this flow
         var found = false;

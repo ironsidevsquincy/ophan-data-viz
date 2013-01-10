@@ -36,7 +36,7 @@ require(['reqwest',  'modules/journey-graph', 'modules/sankey'], function(reqwes
   })
     .then(function(resp) {
 
-      var graph = new JourneyGraph(resp.hits.hits).get();
+      var graph = new JourneyGraph(resp.hits.hits, {showTargetSection: true}).get();
       new Sankey(graph).render();
 
     })

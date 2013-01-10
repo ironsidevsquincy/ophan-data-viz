@@ -5,8 +5,8 @@ define(['js!d3!order', 'js!sankey!order'], function() {
     this.graph = graph,
 
     this.render = function() {
-      var width = 960,
-          height = 500;
+      var width = window.innerWidth - 100,
+          height = window.innerHeight - 300;
 
       var color = d3.scale.category20();
 
@@ -38,7 +38,7 @@ define(['js!d3!order', 'js!sankey!order'], function() {
           .style("fill", function(d) { return color(d.group); })
           .call(force.drag);
 
-      node.append("title")
+      node.append("text")
           .text(function(d) { return d.name; });
 
       force.on("tick", function() {

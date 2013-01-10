@@ -9,7 +9,7 @@ define(['js!d3!order', 'js!sankey!order'], function() {
       // NOTE: following lifted from http://bost.ocks.org/mike/sankey/
       var margin = {top: 1, right: 1, bottom: 6, left: 1},
         width = window.innerWidth - margin.left - margin.right - 100,
-        height = window.innerHeight - margin.top - margin.bottom - 200;
+        height = window.innerHeight - margin.top - margin.bottom - 300;
 
       var formatNumber = d3.format(",.0f"),
         format = function(d) { return formatNumber(d) + " TWh"; },
