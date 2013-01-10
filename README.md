@@ -9,6 +9,6 @@ Requirements
 To Run
 ------
 
-  $ node app.js
+    $ node app.js
 
-Visit (localhost:3000)
+Visit http://localhost:3000
