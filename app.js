@@ -30,6 +30,7 @@ app.configure('development', function(){
 app.get('/', routes.index);
 app.get('/sankey', graph.sankey);
 app.get('/force', graph.force);
+app.get('/scatter', graph.scatter);
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));

@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  h1= title
+  style
+    .node {
+      stroke: #fff;
+      stroke-width: 1.5px;
+    }
+
+    .link {
+      stroke: #999;
+      stroke-opacity: .6;
+    }
+    .axis text {
+      font: 10px sans-serif;
+    }
+
+    .axis path,
+    .axis line {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .axis path {
+      display: none;
+    }
+
+    .isoline {
+      fill: none;
+      stroke: #fff;
+    }
+  svg#chart
+  script(type='text/javascript', src='/javascripts/bootstraps/scatter.js')

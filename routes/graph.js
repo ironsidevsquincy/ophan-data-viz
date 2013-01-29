@@ -5,3 +5,7 @@ exports.sankey = function(req, res){
 exports.force = function(req, res){
   res.render('force', { title: 'Force' });
 };
+
+exports.scatter = function(req, res){
+  res.render('scatter', { title: 'Scatter' });
+};
