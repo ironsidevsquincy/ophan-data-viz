@@ -5,6 +5,7 @@
     "curl": "0.7",
     "reqwest": "0.6",
     "d3": "3",
-    "d3-plugins": "*"
+    "d3-plugins": "*",
+    "bootstrap.css": "*"
   }
 }

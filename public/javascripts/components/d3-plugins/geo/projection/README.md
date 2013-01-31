@@ -30,7 +30,7 @@ Projections:
 * d3.geo.gnomonic - [gnomonic](http://bl.ocks.org/3757349)
 * d3.geo.gringorten - [Gringorten](http://bl.ocks.org/3796882)
 * d3.geo.guyou - [Guyou hemisphere-in-a-square](http://bl.ocks.org/3763867)
-* d3.geo.hammer - [Hammer](http://bl.ocks.org/3712397)
+* d3.geo.hammer - [Hammer](http://bl.ocks.org/3712397), [Eckert–Greifendorff](http://bl.ocks.org/4496212), [quartic authalic](http://bl.ocks.org/4463175), [Briesemeister](http://bl.ocks.org/4519926)
 * d3.geo.hammerRetroazimuthal - [Hammer retroazimuthal](http://bl.ocks.org/4459130)
 * d3.geo.healpix - [HEALPix](http://bl.ocks.org/4463237)
 * d3.geo.hill - [Hill eucyclic](http://bl.ocks.org/4479513), [Maurer No. 73](http://bl.ocks.org/4479547)
@@ -43,7 +43,7 @@ Projections:
 * d3.geo.loximuthal - [loximuthal](http://bl.ocks.org/3867220)
 * d3.geo.mercator - [Mercator](http://bl.ocks.org/3757132)
 * d3.geo.miller - [Miller](http://bl.ocks.org/3734333)
-* d3.geo.mollweide - [Mollweide](http://bl.ocks.org/3734336)
+* d3.geo.mollweide - [Mollweide](http://bl.ocks.org/3734336), [Atlantis](http://bl.ocks.org/4519975)
 * d3.geo.mtFlatPolarParabolic - [McBryde–Thomas flat-polar parabolic](http://bl.ocks.org/4465130)
 * d3.geo.mtFlatPolarQuartic - [McBryde–Thomas flat-polar quartic](http://bl.ocks.org/4465137)
 * d3.geo.mtFlatPolarSinusoidal - [McBryde–Thomas flat-polar sinusoidal](http://bl.ocks.org/4465140)
@@ -53,10 +53,9 @@ Projections:
 * d3.geo.peirceQuincuncial - [Pierce quincuncial](http://bl.ocks.org/4310087)
 * d3.geo.polyconic - [Polyconic](http://bl.ocks.org/3734343)
 * d3.geo.robinson - [Robinson](http://bl.ocks.org/3710566)
-* d3.geo.quarticAuthalic - [quartic authalic](http://bl.ocks.org/4463175)
 * d3.geo.satellite - [satellite (tilted perpsective)](http://bl.ocks.org/3790444)
 * d3.geo.sinusoidal - [sinusoidal](http://bl.ocks.org/3712399)
-* d3.geo.sinuMollweide - [sinu-Mollweide](http://bl.ocks.org/4319903)
+* d3.geo.sinuMollweide - [Sinu-Mollweide](http://bl.ocks.org/4319903)
 * d3.geo.stereographic - [stereographic](http://bl.ocks.org/3757137)
 * d3.geo.vanDerGrinten - [Van der Grinten](http://bl.ocks.org/3796831)
 * d3.geo.vanDerGrinten4 - [Van der Grinten IV](http://bl.ocks.org/4489365)
@@ -65,6 +64,8 @@ Projections:
 * d3.geo.wagner7 - [Wagner VII](http://bl.ocks.org/4465109)
 * d3.geo.wiechel - [Wiechel](http://bl.ocks.org/4463155)
 * d3.geo.winkel3 - [Winkel Tripel](http://bl.ocks.org/3682676)
+
+This plugin also provides d3.geo.interrupt, which can be used to create arbitrary interrupted projections from a given raw projection. For example, see [Philbrick’s interrupted Sinu-Mollweide](http://bl.ocks.org/4481520).
 
 This plugin requires [D3 3.0](https://github.com/mbostock/d3/wiki/Upgrading-to-3.0) or greater. To use the official hosted version, include the projection plugin after including D3:
 

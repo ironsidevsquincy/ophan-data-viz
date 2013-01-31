@@ -2,6 +2,7 @@ doctype 5
 html
   head
     title= title
+    link(href="/javascripts/components/bootstrap.css/css/bootstrap.css", rel="stylesheet", media="screen")
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(type='text/javascript')
       curl = {
@@ -12,7 +13,8 @@ html
             reqwest: "components/reqwest/reqwest.js",
             d3: "components/d3/d3.js",
             sankey: "components/d3-plugins/sankey/sankey.js",
-            contour: "components/d3-plugins/geom/contour/contour.js"
+            contour: "components/d3-plugins/geom/contour/contour.js",
+            conrec: "components/conrec.js"
           }
         }
     script(type='text/javascript', src='/javascripts/components/curl/dist/curl-kitchen-sink/curl.js')
