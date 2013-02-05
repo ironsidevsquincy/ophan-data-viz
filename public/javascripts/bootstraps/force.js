@@ -42,7 +42,6 @@ require(['reqwest',  'modules/journey-graph', 'modules/force'], function(reqwest
     .then(function(resp) {
       // create graph and display it
       var graph = new JourneyGraph(resp.hits.hits, {showSourcePath: true}).get();
-      console.log(graph);
       new Force(graph).render();
 
     })
